@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #FFFFFF;
+  --brand-obsidian: #050505;
+  --brand-white: #FFFFFF;
+  --brand-muted: #94A3B8;
+  --brand-purple: #7C3AED;
+  --brand-cyan: #06B6D4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand-obsidian: var(--brand-obsidian);
+  --color-brand-white: var(--brand-white);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-cyan: var(--brand-cyan);
+  --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--brand-obsidian);
+  color: var(--brand-white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Subtle grid pattern background for technical 'blueprint' feel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above the grid */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Utility classes for brand gradients */
+.gradient-accent {
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-cyan));
+}
+
+.gradient-accent-text {
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Card Effect - Purple outer glow that intensifies on hover */
+.glow-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px -5px rgba(124, 58, 237, 0.15),
+    0 0 40px -10px rgba(124, 58, 237, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glow-card:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow:
+    0 0 30px -5px rgba(124, 58, 237, 0.3),
+    0 0 60px -10px rgba(124, 58, 237, 0.2),
+    0 0 80px -15px rgba(6, 182, 212, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Variant with cyan accent */
+.glow-card-cyan {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px -5px rgba(6, 182, 212, 0.15),
+    0 0 40px -10px rgba(6, 182, 212, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glow-card-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow:
+    0 0 30px -5px rgba(6, 182, 212, 0.3),
+    0 0 60px -10px rgba(6, 182, 212, 0.2),
+    0 0 80px -15px rgba(124, 58, 237, 0.1);
+  background: rgba(255, 255, 255, 0.03);
 }
