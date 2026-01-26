@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
+  --background: #111111;
   --foreground: #FFFFFF;
-  --brand-obsidian: #050505;
+  --brand-obsidian: #111111;
   --brand-white: #FFFFFF;
   --brand-muted: #94A3B8;
   --brand-purple: #7C3AED;
