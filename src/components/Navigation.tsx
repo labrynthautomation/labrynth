@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#maze", label: "The Maze" },
-  { href: "#thread", label: "The Thread" },
-  { href: "#lab", label: "The Lab" },
+  { href: "#maze", label: "Problems" },
+  { href: "#thread", label: "Solution" },
+  { href: "#lab", label: "Approach" },
   { href: "#entry", label: "Contact" },
 ];
 

@@ -38,13 +38,13 @@ const timeThieves = [
   },
   {
     icon: MessageSquare,
-    title: "Follow-Up Fatigue",
-    description: "Remembering to check in with leads and clients consistently.",
+    title: "Forgotten Follow-Ups",
+    description: "Leads and clients slip through the cracks when no one remembers to check in.",
   },
   {
     icon: Clock,
-    title: "No-Show Management",
-    description: "Dealing with missed appointments and last-minute cancellations.",
+    title: "No-Shows & Cancellations",
+    description: "Missed appointments and last-minute cancellations that cost you money.",
   },
   {
     icon: Users,
@@ -57,25 +57,25 @@ const engineSteps = [
   {
     icon: Bot,
     title: "AI Reception",
-    description: "Intelligent first contact that qualifies and routes inquiries 24/7.",
+    description: "An AI assistant answers calls and messages instantly, day or night.",
     color: "brand-purple",
   },
   {
     icon: Calendar,
     title: "Smart Scheduling",
-    description: "Automated booking that syncs with your calendar and preferences.",
+    description: "Clients book themselves online, synced with your real availability.",
     color: "brand-cyan",
   },
   {
     icon: Bell,
-    title: "Proactive Reminders",
-    description: "Multi-channel notifications that reduce no-shows by 80%.",
+    title: "Automatic Reminders",
+    description: "Text and email reminders go out automatically so clients actually show up.",
     color: "brand-purple",
   },
   {
     icon: CheckCircle,
-    title: "Seamless Check-In",
-    description: "Frictionless arrival experience with automated confirmations.",
+    title: "Easy Check-In",
+    description: "Clients check in on their phone. No clipboard, no waiting.",
     color: "brand-cyan",
   },
 ];
@@ -83,18 +83,18 @@ const engineSteps = [
 const labPillars = [
   {
     icon: Target,
-    title: "Precision",
-    description: "Every automation is calibrated to your specific workflow, not generic templates.",
+    title: "Custom-Built",
+    description: "Every automation is designed around your specific workflow. No cookie-cutter templates.",
   },
   {
     icon: Cog,
-    title: "Automation",
-    description: "We eliminate repetitive tasks so you can focus on high-value work.",
+    title: "Hands-Free",
+    description: "We eliminate the repetitive tasks so you can focus on the work that grows your business.",
   },
   {
     icon: Sparkles,
-    title: "Bespoke Intelligence",
-    description: "AI threads custom-woven to understand your business language.",
+    title: "Smart AI",
+    description: "Trained to talk and work the way your business does, not like a generic chatbot.",
   },
 ];
 
@@ -108,17 +108,17 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <FadeIn>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-brand-white mb-6 leading-tight">
-              Navigate the{" "}
-              <span className="gradient-accent-text">Complexity</span>
+              Stop Doing{" "}
+              <span className="gradient-accent-text">Busywork.</span>
               <br />
-              of Scale.
+              Start Growing.
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <p className="text-lg md:text-xl text-brand-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-              Labrynth designs intelligent AI threads to automate your mundane,
-              solving the maze of local business efficiency.
+              We build custom automations that handle your scheduling, follow-ups,
+              and client communication so you can focus on the work that actually matters.
             </p>
           </FadeIn>
 
@@ -128,14 +128,14 @@ export default function Home() {
                 href="#entry"
                 className="gradient-accent px-8 py-4 rounded-lg font-semibold text-brand-white hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 group"
               >
-                Find Your Thread
+                Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#maze"
                 className="px-8 py-4 rounded-lg font-semibold border border-brand-muted/30 text-brand-white hover:border-brand-purple transition-colors"
               >
-                Explore the Maze
+                See How It Works
               </a>
             </div>
           </FadeIn>
@@ -155,9 +155,9 @@ export default function Home() {
       <Section id="maze">
         <FadeIn>
           <SectionHeader
-            label="The Maze"
-            title="Time Thieves Lurking in Your Business"
-            description="These repetitive tasks silently drain your most valuable resource. Recognize any?"
+            label="Sound Familiar?"
+            title="The Tasks Draining Your Day"
+            description="If you're spending hours on any of these, we can help."
           />
         </FadeIn>
 
@@ -182,9 +182,9 @@ export default function Home() {
       <Section id="thread" className="bg-brand-white/[0.02]">
         <FadeIn>
           <SectionHeader
-            label="The Thread"
-            title="The Concierge Engine"
-            description="A complete scheduling and check-in automation system that works while you sleep."
+            label="How It Works"
+            title="Your Business, On Autopilot"
+            description="Clients book, get reminded, and check in. All automatically, even at 2 AM."
           />
         </FadeIn>
 
@@ -201,10 +201,13 @@ export default function Home() {
                     </div>
 
                     {/* Icon Container */}
-                    <div className={`w-16 h-16 rounded-xl bg-${step.color}/10 border border-${step.color}/30 flex items-center justify-center mb-4`}
+                    <div
+                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-4"
                       style={{
                         backgroundColor: step.color === "brand-purple" ? "rgba(124, 58, 237, 0.1)" : "rgba(6, 182, 212, 0.1)",
                         borderColor: step.color === "brand-purple" ? "rgba(124, 58, 237, 0.3)" : "rgba(6, 182, 212, 0.3)",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
                       }}
                     >
                       <step.icon
@@ -241,8 +244,8 @@ export default function Home() {
           </FadeInStaggerItem>
           <FadeInStaggerItem>
             <div className="text-center p-6">
-              <div className="text-4xl font-bold gradient-accent-text mb-2">80%</div>
-              <p className="text-brand-muted">Reduction in No-Shows</p>
+              <div className="text-4xl font-bold gradient-accent-text mb-2">Fewer</div>
+              <p className="text-brand-muted">No-Shows & Cancellations</p>
             </div>
           </FadeInStaggerItem>
           <FadeInStaggerItem>
@@ -258,9 +261,9 @@ export default function Home() {
       <Section id="lab">
         <FadeIn>
           <SectionHeader
-            label="The Lab"
-            title="The Labrynth Approach"
-            description="We don't believe in one-size-fits-all. Every business maze is unique, and so is our solution."
+            label="Our Approach"
+            title="Built Around Your Business"
+            description="We don't sell templates. Every automation is custom-built for how your business actually runs."
           />
         </FadeIn>
 
@@ -285,8 +288,8 @@ export default function Home() {
         <FadeIn delay={0.4} className="mt-16">
           <div className="glow-card-cyan p-8 md:p-12 text-center">
             <p className="text-lg md:text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
-              "We weave AI threads through your existing processes—no rip and replace.
-              Just <span className="text-brand-cyan">intelligent enhancement</span> that
+              "We plug into the tools you already use. No starting from scratch.
+              Just <span className="text-brand-cyan">smart automation</span> that
               feels like it was always there."
             </p>
           </div>
@@ -297,9 +300,9 @@ export default function Home() {
       <Section id="entry" className="bg-brand-white/[0.02]">
         <FadeIn>
           <SectionHeader
-            label="The Entry"
-            title="Ready to Escape the Maze?"
-            description="Tell us about the time thief stealing your hours. We'll show you the thread out."
+            label="Let's Talk"
+            title="Ready to Save Some Hours?"
+            description="Tell us what's eating up your time, and we'll show you how to fix it."
           />
         </FadeIn>
 
@@ -311,12 +314,49 @@ export default function Home() {
       </Section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 md:px-12 border-t border-brand-muted/10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-xl font-bold gradient-accent-text">Labrynth</div>
-          <p className="text-brand-muted text-sm">
-            © {new Date().getFullYear()} Labrynth Automation. All rights reserved.
-          </p>
+      <footer className="py-16 px-6 md:px-12 border-t border-brand-muted/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            {/* Brand */}
+            <div>
+              <div className="text-xl font-bold gradient-accent-text mb-3">Labrynth</div>
+              <p className="text-brand-muted text-sm leading-relaxed">
+                Custom AI automations for local businesses.
+                Less busywork, more growth.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-sm font-semibold text-brand-white mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><a href="#maze" className="text-brand-muted text-sm hover:text-brand-white transition-colors">Problems We Solve</a></li>
+                <li><a href="#thread" className="text-brand-muted text-sm hover:text-brand-white transition-colors">How It Works</a></li>
+                <li><a href="#lab" className="text-brand-muted text-sm hover:text-brand-white transition-colors">Our Approach</a></li>
+                <li><a href="#entry" className="text-brand-muted text-sm hover:text-brand-white transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-sm font-semibold text-brand-white mb-4">Get in Touch</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="mailto:labrynthautomation@gmail.com" className="text-brand-muted text-sm hover:text-brand-white transition-colors">
+                    labrynthautomation@gmail.com
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-brand-muted/10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-brand-muted text-xs">
+              © {new Date().getFullYear()} Labrynth Automation. All rights reserved.
+            </p>
+            <a href="/privacy" className="text-brand-muted text-xs hover:text-brand-white transition-colors">Privacy Policy</a>
+          </div>
         </div>
       </footer>
     </>

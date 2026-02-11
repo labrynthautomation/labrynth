@@ -1,20 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     business: "",
-    timeThief: "",
+    challenge: "",
     contact: "",
   });
+  const [status, setStatus] = useState<FormStatus>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setStatus("submitting");
+
+    try {
+      // TODO: Replace with real API endpoint
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("Form submitted:", formData);
+      setStatus("success");
+      setFormData({ name: "", business: "", challenge: "", contact: "" });
+    } catch {
+      setStatus("error");
+    }
   };
 
   const handleChange = (
@@ -24,7 +36,28 @@ export function ContactForm() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    if (status === "error") setStatus("idle");
   };
+
+  if (status === "success") {
+    return (
+      <div className="text-center py-12 max-w-lg mx-auto">
+        <CheckCircle className="w-12 h-12 text-brand-cyan mx-auto mb-4" />
+        <h3 className="text-xl font-semibold text-brand-white mb-2">
+          Message Sent
+        </h3>
+        <p className="text-brand-muted mb-6">
+          Thanks for reaching out! We&apos;ll get back to you within one business day.
+        </p>
+        <button
+          onClick={() => setStatus("idle")}
+          className="text-brand-cyan hover:text-brand-white transition-colors text-sm"
+        >
+          Send another message
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto">
@@ -68,20 +101,20 @@ export function ContactForm() {
 
       <div>
         <label
-          htmlFor="timeThief"
+          htmlFor="challenge"
           className="block text-sm font-medium text-brand-muted mb-2"
         >
-          The Time Thief
+          What takes up too much of your time?
         </label>
         <textarea
-          id="timeThief"
-          name="timeThief"
-          value={formData.timeThief}
+          id="challenge"
+          name="challenge"
+          value={formData.challenge}
           onChange={handleChange}
           required
           rows={3}
           className="w-full px-4 py-3 bg-brand-obsidian border border-brand-muted/20 rounded-lg text-brand-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-colors resize-none"
-          placeholder="What repetitive task steals your time?"
+          placeholder="e.g. Scheduling appointments, following up with clients, data entry..."
         />
       </div>
 
@@ -90,7 +123,7 @@ export function ContactForm() {
           htmlFor="contact"
           className="block text-sm font-medium text-brand-muted mb-2"
         >
-          Contact Info
+          Email or Phone
         </label>
         <input
           type="text"
@@ -100,16 +133,26 @@ export function ContactForm() {
           onChange={handleChange}
           required
           className="w-full px-4 py-3 bg-brand-obsidian border border-brand-muted/20 rounded-lg text-brand-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-colors"
-          placeholder="Email or phone number"
+          placeholder="How should we reach you?"
         />
       </div>
 
+      {status === "error" && (
+        <div className="flex items-center gap-2 text-red-400 text-sm">
+          <AlertCircle className="w-4 h-4 shrink-0" />
+          <p>Something went wrong. Please try again.</p>
+        </div>
+      )}
+
       <button
         type="submit"
-        className="w-full gradient-accent px-6 py-4 rounded-lg font-semibold text-brand-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group"
+        disabled={status === "submitting"}
+        className="w-full gradient-accent px-6 py-4 rounded-lg font-semibold text-brand-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Enter the Labrynth
-        <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        {status === "submitting" ? "Sending..." : "Get My Free Consultation"}
+        {status !== "submitting" && (
+          <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        )}
       </button>
     </form>
   );

@@ -8,8 +8,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Labrynth Automation",
-  description: "Labrynth Automation Platform",
+  title: "Labrynth Automation — Custom AI Automations for Local Businesses",
+  description:
+    "Labrynth builds custom automations that handle scheduling, follow-ups, and client communication for local businesses. Save 10+ hours a week and reduce no-shows.",
+  openGraph: {
+    title: "Labrynth Automation — Stop Doing Busywork. Start Growing.",
+    description:
+      "Custom AI automations that handle scheduling, follow-ups, and client communication for local businesses.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
