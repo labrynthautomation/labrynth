@@ -244,7 +244,7 @@ export default function Home() {
           </FadeInStaggerItem>
           <FadeInStaggerItem>
             <div className="text-center p-6">
-              <div className="text-4xl font-bold gradient-accent-text mb-2">Fewer</div>
+              <div className="text-4xl font-bold text-brand-emerald mb-2">Fewer</div>
               <p className="text-brand-muted">No-Shows & Cancellations</p>
             </div>
           </FadeInStaggerItem>

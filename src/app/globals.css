@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111111;
-  --foreground: #FFFFFF;
-  --brand-obsidian: #111111;
-  --brand-white: #FFFFFF;
-  --brand-muted: #94A3B8;
+  --background: #0F0F14;
+  --foreground: #F1F5F9;
+  --brand-obsidian: #0F0F14;
+  --brand-white: #F1F5F9;
+  --brand-muted: #A1B2C8;
   --brand-purple: #7C3AED;
   --brand-cyan: #06B6D4;
+  --brand-emerald: #10B981;
 }
 
 @theme inline {
@@ -18,6 +19,7 @@
   --color-brand-muted: var(--brand-muted);
   --color-brand-purple: var(--brand-purple);
   --color-brand-cyan: var(--brand-cyan);
+  --color-brand-emerald: var(--brand-emerald);
   --font-sans: var(--font-inter);
 }
 
