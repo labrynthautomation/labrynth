@@ -21,7 +21,6 @@ export function ContactForm() {
     try {
       // TODO: Replace with real API endpoint
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Form submitted:", formData);
       setStatus("success");
       setFormData({ name: "", business: "", challenge: "", contact: "" });
     } catch {
