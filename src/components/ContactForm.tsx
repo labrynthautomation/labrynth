@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -44,28 +45,39 @@ export function ContactForm() {
     if (status === "error") setStatus("idle");
   };
 
-  if (status === "success") {
-    return (
-      <div className="text-center py-12 max-w-lg mx-auto">
-        <CheckCircle className="w-12 h-12 text-brand-cyan mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-brand-white mb-2">
-          Message Sent
-        </h3>
-        <p className="text-brand-muted mb-6">
-          Thanks for reaching out! We&apos;ll get back to you within one business day.
-        </p>
-        <button
-          onClick={() => setStatus("idle")}
-          className="text-brand-cyan hover:text-brand-white transition-colors text-sm"
-        >
-          Send another message
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto">
+    <AnimatePresence mode="wait">
+      {status === "success" ? (
+        <motion.div
+          key="success"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+          className="text-center py-12 max-w-lg mx-auto"
+        >
+          <CheckCircle className="w-12 h-12 text-brand-cyan mx-auto mb-4" />
+          <h3 className="text-xl font-semibold text-brand-white mb-2">
+            Message Sent
+          </h3>
+          <p className="text-brand-muted mb-6">
+            Thanks for reaching out! We&apos;ll get back to you within one business day.
+          </p>
+          <button
+            onClick={() => setStatus("idle")}
+            className="text-brand-cyan hover:text-brand-white transition-colors text-sm"
+          >
+            Send another message
+          </button>
+        </motion.div>
+      ) : (
+    <motion.form
+      key="form"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+      onSubmit={handleSubmit}
+      className="space-y-6 max-w-lg mx-auto"
+    >
       <div>
         <label
           htmlFor="name"
@@ -109,7 +121,7 @@ export function ContactForm() {
           htmlFor="challenge"
           className="block text-sm font-medium text-brand-muted mb-2"
         >
-          What takes up too much of your time?
+          What Absorbs Your Time?
         </label>
         <textarea
           id="challenge"
@@ -143,7 +155,7 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 text-red-400 text-sm">
+        <div className="flex items-center gap-2 text-brand-error text-sm">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <p>Something went wrong. Please try again.</p>
         </div>
@@ -159,6 +171,8 @@ export function ContactForm() {
           <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         )}
       </button>
-    </form>
+    </motion.form>
+      )}
+    </AnimatePresence>
   );
 }

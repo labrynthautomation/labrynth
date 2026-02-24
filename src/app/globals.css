@@ -9,6 +9,7 @@
   --brand-purple: #7C3AED;
   --brand-cyan: #06B6D4;
   --brand-emerald: #10B981;
+  --brand-error: #F87171;
 }
 
 @theme inline {
@@ -20,7 +21,12 @@
   --color-brand-purple: var(--brand-purple);
   --color-brand-cyan: var(--brand-cyan);
   --color-brand-emerald: var(--brand-emerald);
+  --color-brand-error: var(--brand-error);
   --font-sans: var(--font-inter);
+}
+
+html {
+  color-scheme: dark;
 }
 
 body {
@@ -29,6 +35,29 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   position: relative;
   min-height: 100vh;
+}
+
+/* Dark scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.3);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.5);
 }
 
 /* Subtle grid pattern background for technical 'blueprint' feel */
@@ -41,13 +70,7 @@ body::before {
     linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
-  z-index: 0;
-}
-
-/* Ensure content sits above the grid */
-body > * {
-  position: relative;
-  z-index: 1;
+  z-index: -1;
 }
 
 /* Utility classes for brand gradients */
@@ -93,6 +116,18 @@ body > * {
     0 0 20px -5px rgba(6, 182, 212, 0.15),
     0 0 40px -10px rgba(6, 182, 212, 0.1);
   transition: all 0.3s ease;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .glow-card-cyan:hover {

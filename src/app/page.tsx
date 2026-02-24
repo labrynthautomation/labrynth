@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { FadeIn, FadeInStagger, FadeInStaggerItem } from "@/components/FadeIn";
 import { Section, SectionHeader } from "@/components/Section";
 import { ContactForm } from "@/components/ContactForm";
 import { Navigation } from "@/components/Navigation";
+import { TiltCard } from "@/components/TiltCard";
 import {
   Clock,
   PhoneCall,
@@ -14,10 +16,11 @@ import {
   Calendar,
   Bell,
   CheckCircle,
-  Workflow,
   Target,
   Sparkles,
   Cog,
+  InstagramIcon,
+  LinkedinIcon,
 } from "lucide-react";
 
 const timeThieves = [
@@ -104,8 +107,31 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 md:px-12 pt-16">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="min-h-screen flex items-center justify-center px-6 md:px-12 pt-16 relative overflow-x-clip overflow-y-visible">
+        {/* Logo watermark — atmospheric left background */}
+        <div
+          className="absolute left-0 top-1/2 -translate-y-[45%] -translate-x-[18%] w-[420px] h-[420px] md:w-[580px] md:h-[580px] lg:w-[650px] lg:h-[650px] pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <Image
+            src="/logo.png"
+            alt=""
+            width={650}
+            height={650}
+            className="w-full h-full object-contain opacity-[0.035]"
+            style={{
+              maskImage: "radial-gradient(ellipse at 60% 50%, black 20%, transparent 70%)",
+              WebkitMaskImage: "radial-gradient(ellipse at 60% 50%, black 20%, transparent 70%)",
+            }}
+            priority
+          />
+        </div>
+
+        {/* Ambient glow orbs */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-purple/[0.08] blur-[120px] animate-pulse pointer-events-none" />
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[400px] h-[400px] rounded-full bg-brand-cyan/[0.05] blur-[100px] pointer-events-none" style={{ animationDuration: '4s', animationName: 'pulse' }} />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <FadeIn>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-brand-white mb-6 leading-tight">
               Stop Doing{" "}
@@ -142,14 +168,27 @@ export default function Home() {
 
           {/* Decorative Element */}
           <FadeIn delay={0.6} className="mt-20">
-            <div className="flex items-center justify-center gap-2 text-brand-muted/50">
+            <div className="flex items-center justify-center gap-3 text-brand-muted/50">
               <div className="w-12 h-px bg-gradient-to-r from-transparent to-brand-purple/50"></div>
-              <Workflow className="w-5 h-5" />
+              <Image
+                src="/logo.png"
+                alt=""
+                width={20}
+                height={20}
+                className="opacity-30"
+                aria-hidden="true"
+              />
               <div className="w-12 h-px bg-gradient-to-l from-transparent to-brand-cyan/50"></div>
             </div>
           </FadeIn>
         </div>
       </section>
+
+      {/* Section Transition */}
+      <div className="relative h-32">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-16 max-w-3xl mx-auto bg-brand-purple/[0.02] blur-2xl rounded-full" />
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px max-w-2xl mx-auto bg-gradient-to-r from-transparent via-brand-purple/30 to-transparent" />
+      </div>
 
       {/* The Maze Section */}
       <Section id="maze">
@@ -164,7 +203,7 @@ export default function Home() {
         <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
           {timeThieves.map((thief) => (
             <FadeInStaggerItem key={thief.title}>
-              <div className="glow-card p-6 h-full">
+              <TiltCard className="glow-card p-6 h-full">
                 <thief.icon className="w-10 h-10 text-brand-purple mb-4" />
                 <h3 className="text-xl font-semibold text-brand-white mb-2">
                   {thief.title}
@@ -172,11 +211,17 @@ export default function Home() {
                 <p className="text-brand-muted text-sm leading-relaxed">
                   {thief.description}
                 </p>
-              </div>
+              </TiltCard>
             </FadeInStaggerItem>
           ))}
         </FadeInStagger>
       </Section>
+
+      {/* Section Transition */}
+      <div className="relative h-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-white/[0.01] to-brand-white/[0.02]" />
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px max-w-2xl mx-auto bg-gradient-to-r from-transparent via-brand-purple/30 to-transparent" />
+      </div>
 
       {/* The Thread Section */}
       <Section id="thread" className="bg-brand-white/[0.02]">
@@ -184,13 +229,13 @@ export default function Home() {
           <SectionHeader
             label="How It Works"
             title="Your Business, On Autopilot"
-            description="Clients book, get reminded, and check in. All automatically, even at 2 AM."
+            description="Clients book, get reminded, and check in. All automatically, at any hour."
           />
         </FadeIn>
 
         {/* Technical Diagram */}
         <FadeIn delay={0.2} className="mb-16">
-          <div className="glow-card p-8 md:p-12">
+          <TiltCard className="glow-card p-8 md:p-12" tiltAmount={0.8}>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
               {engineSteps.map((step, index) => (
                 <div key={step.title} className="relative">
@@ -231,7 +276,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </TiltCard>
         </FadeIn>
 
         {/* Features Grid */}
@@ -257,20 +302,26 @@ export default function Home() {
         </FadeInStagger>
       </Section>
 
+      {/* Section Transition */}
+      <div className="relative h-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-white/[0.02] via-brand-white/[0.01] to-transparent" />
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px max-w-2xl mx-auto bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent" />
+      </div>
+
       {/* The Lab Section */}
       <Section id="lab">
         <FadeIn>
           <SectionHeader
             label="Our Approach"
             title="Built Around Your Business"
-            description="We don't sell templates. Every automation is custom-built for how your business actually runs."
+            description="We don't sell templates. Every automation is tailored for your specific needs."
           />
         </FadeIn>
 
         <FadeInStagger className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={0.15}>
           {labPillars.map((pillar) => (
             <FadeInStaggerItem key={pillar.title}>
-              <div className="text-center">
+              <TiltCard className="glow-card p-8 h-full text-center">
                 <div className="w-16 h-16 rounded-2xl gradient-accent mx-auto mb-6 flex items-center justify-center">
                   <pillar.icon className="w-8 h-8 text-brand-white" />
                 </div>
@@ -280,28 +331,34 @@ export default function Home() {
                 <p className="text-brand-muted leading-relaxed">
                   {pillar.description}
                 </p>
-              </div>
+              </TiltCard>
             </FadeInStaggerItem>
           ))}
         </FadeInStagger>
 
         <FadeIn delay={0.4} className="mt-16">
-          <div className="glow-card-cyan p-8 md:p-12 text-center">
+          <TiltCard className="glow-card-cyan p-8 md:p-12 text-center" glowColor="cyan" tiltAmount={0.8}>
             <p className="text-lg md:text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
               "We plug into the tools you already use. No starting from scratch.
               Just <span className="text-brand-cyan">smart automation</span> that
               feels like it was always there."
             </p>
-          </div>
+          </TiltCard>
         </FadeIn>
       </Section>
+
+      {/* Section Transition */}
+      <div className="relative h-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-white/[0.01] to-brand-white/[0.02]" />
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px max-w-2xl mx-auto bg-gradient-to-r from-transparent via-brand-purple/30 to-transparent" />
+      </div>
 
       {/* The Entry Section */}
       <Section id="entry" className="bg-brand-white/[0.02]">
         <FadeIn>
           <SectionHeader
             label="Let's Talk"
-            title="Ready to Save Some Hours?"
+            title="Ready to Save Your Valuable Time?"
             description="Tell us what's eating up your time, and we'll show you how to fix it."
           />
         </FadeIn>
@@ -314,12 +371,16 @@ export default function Home() {
       </Section>
 
       {/* Footer */}
-      <footer className="py-16 px-6 md:px-12 border-t border-brand-muted/10">
+      <footer className="relative py-16 px-6 md:px-12 bg-brand-white/[0.02]">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple/30 to-transparent" />
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             {/* Brand */}
             <div>
-              <div className="text-xl font-bold gradient-accent-text mb-3">Labrynth</div>
+              <div className="flex items-end gap-2 mb-3">
+                <Image src="/logo.png" alt="" width={22} height={22} className="opacity-70" aria-hidden="true" />
+                <span className="text-xl font-bold gradient-accent-text leading-none">Labrynth</span>
+              </div>
               <p className="text-brand-muted text-sm leading-relaxed">
                 Custom AI automations for local businesses.
                 Less busywork, more growth.
@@ -340,21 +401,28 @@ export default function Home() {
             {/* Contact */}
             <div>
               <h4 className="text-sm font-semibold text-brand-white mb-4">Get in Touch</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="mailto:labrynthautomation@gmail.com" className="text-brand-muted text-sm hover:text-brand-white transition-colors">
-                    labrynthautomation@gmail.com
+              <div className="flex flex-col gap-2">
+                <a href="mailto:labrynthautomation@gmail.com" className="text-brand-muted text-sm hover:text-brand-white transition-colors">
+                  labrynthautomation@gmail.com
+                </a>
+                <div className="flex items-center gap-3 mt-1">
+                  <a href="https://www.instagram.com/labrynthautomation/" target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-white transition-colors" aria-label="Instagram">
+                    <InstagramIcon className="w-5 h-5" />
                   </a>
-                </li>
-              </ul>
+                  <a href="https://www.linkedin.com/in/labrynth-automation/" target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-white transition-colors" aria-label="LinkedIn">
+                    <LinkedinIcon className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-8 border-t border-brand-muted/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="pt-8 border-t border-brand-muted/10 flex flex-col md:flex-row items-center justify-between gap-4 relative">
             <p className="text-brand-muted text-xs">
               © {new Date().getFullYear()} Labrynth Automation. All rights reserved.
             </p>
+            <Image src="/logo.png" alt="" width={18} height={18} className="opacity-40 md:absolute md:left-1/2 md:-translate-x-1/2" aria-hidden="true" />
             <a href="/privacy" className="text-brand-muted text-xs hover:text-brand-white transition-colors">Privacy Policy</a>
           </div>
         </div>

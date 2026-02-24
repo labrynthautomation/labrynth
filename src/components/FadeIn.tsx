@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { type ReactNode } from "react";
 
 interface FadeInProps {
@@ -22,6 +22,8 @@ export function FadeIn({
   distance = 24,
   once = true,
 }: FadeInProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   const directions = {
     up: { y: distance },
     down: { y: -distance },
@@ -31,17 +33,19 @@ export function FadeIn({
   };
 
   const variants: Variants = {
-    hidden: {
-      opacity: 0,
-      ...directions[direction],
-    },
+    hidden: prefersReducedMotion
+      ? { opacity: 0 }
+      : {
+          opacity: 0,
+          ...directions[direction],
+        },
     visible: {
       opacity: 1,
       x: 0,
       y: 0,
       transition: {
-        duration,
-        delay,
+        duration: prefersReducedMotion ? 0 : duration,
+        delay: prefersReducedMotion ? 0 : delay,
         ease: [0.25, 0.4, 0.25, 1],
       },
     },
