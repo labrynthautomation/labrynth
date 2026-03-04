@@ -41,6 +41,7 @@ export function CursorGlow() {
         zIndex: 50,
         opacity: 0,
         transition: "opacity 0.3s ease",
+        filter: "blur(30px)",
       }}
     />
   );

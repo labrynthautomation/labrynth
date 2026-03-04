@@ -88,7 +88,7 @@ body::before {
 /* Glow Card Effect - Purple outer glow that intensifies on hover */
 .glow-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
+  background: #16161e;
   border: 1px solid rgba(124, 58, 237, 0.2);
   border-radius: 12px;
   box-shadow:
@@ -103,13 +103,13 @@ body::before {
     0 0 30px -5px rgba(124, 58, 237, 0.3),
     0 0 60px -10px rgba(124, 58, 237, 0.2),
     0 0 80px -15px rgba(6, 182, 212, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  background: #1a1a24;
 }
 
 /* Variant with cyan accent */
 .glow-card-cyan {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
+  background: #16161e;
   border: 1px solid rgba(6, 182, 212, 0.2);
   border-radius: 12px;
   box-shadow:
@@ -136,5 +136,5 @@ body::before {
     0 0 30px -5px rgba(6, 182, 212, 0.3),
     0 0 60px -10px rgba(6, 182, 212, 0.2),
     0 0 80px -15px rgba(124, 58, 237, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  background: #1a1a24;
 }
